@@ -16,10 +16,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import HomeIcon from '@mui/icons-material/Home';
 import NavLink from './navLink/navLink';
 import styles from './appbar.module.css';
 import { useCart } from '../../context/CartContext';
-import { SimpleTreeView, TreeItem } from '@mui/x-tree-view';
+import TreeViewDropdown from './components/TreeViewDropdown';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -127,6 +128,13 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <NavLink item={{ title: 'Catalog', path: '/catalog' }} >
+        <MenuItem>
+          <IconButton size="large" color="inherit">
+              <p>Catalog</p>
+          </IconButton>
+        </MenuItem>
+      </NavLink>
       <NavLink item={{ title: 'Contact', path: '/contact' }} >
         <MenuItem>
           <IconButton size="large" color="inherit">
@@ -147,6 +155,14 @@ export default function PrimarySearchAppBar() {
           </Badge>
         </IconButton>
         <p>Cart Items</p>
+      </MenuItem>
+      </NavLink>
+      <NavLink item={{ title: 'Home', path: '/' }} >
+      <MenuItem>
+        <IconButton size="large" color="inherit">
+            <HomeIcon  />
+        </IconButton>
+        <p>Home</p>
       </MenuItem>
       </NavLink>
     </Menu>
@@ -185,6 +201,16 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <NavLink item={{ title: 'Catalog', path: '/catalog' }} >
+            <IconButton size="large" color="inherit" className={styles.iconButtonColor} >
+                <p>Catalog</p>
+            </IconButton>
+            </NavLink>
+            <NavLink item={{ title: 'Home', path: '/' }} >
+            <IconButton size="large" aria-label="home" color="inherit" className={styles.iconButtonColor} >
+                <HomeIcon  />
+            </IconButton>
+            </NavLink>
             <NavLink item={{ title: 'Contact', path: '/contact' }} >
             <IconButton size="large" aria-label="contact us" color="inherit" className={styles.iconButtonColor} >
                 <ContactPageIcon  />
@@ -226,31 +252,5 @@ export default function PrimarySearchAppBar() {
   );
 }
 
-function TreeViewDropdown({ onClose }) {
 
-  const categories = {
-    'Gaskets': ['Pre-Cut Gaskets', 'Scanning, Measurement, and Reverse Engineering Services', 'Garlock BLUE_GARD 3000 Pipe', 'Flange Gaskets'],
-    'Tools & Parts': ['Gasket Cutting Machines', 'Replacement Baldes', 'Parts'],
-    // ... more categories
-  };
-  const handleTreeItemClick = (itemId) => {
-}
-
-  return (
-    <SimpleTreeView>
-        {Object.entries(categories).map(([category, subcategories]) => (
-          <TreeItem key={category} itemId={category} label={category}>
-            {subcategories.map(subcategory => (
-              <TreeItem 
-                key={subcategory} 
-                itemId={subcategory} 
-                label={subcategory}
-                onClick={() => handleTreeItemClick(subcategory)}
-              />
-            ))}
-          </TreeItem>
-        ))}
-      </SimpleTreeView>
-  );
-}
 
