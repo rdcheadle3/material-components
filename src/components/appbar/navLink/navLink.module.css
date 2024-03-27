@@ -1,0 +1,8 @@
+.navLink {
+    text-decoration: none; /* Removes underline from the link */
+    color: inherit; /* Keeps the text color consistent */
+}
+
+.navLink p {
+    margin: 0; /* Optional: to remove any default margins from paragraphs */
+}

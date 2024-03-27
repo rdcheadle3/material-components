@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,10 +13,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import NavLink from './navLink/navLink';
+import styles from './appbar.module.css';
+import { useCart } from '../../context/CartContext';
 import { SimpleTreeView, TreeItem } from '@mui/x-tree-view';
 
 const Search = styled('div')(({ theme }) => ({
@@ -60,20 +62,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { itemCount } = useCart();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const [isTreeViewOpen, setIsTreeViewOpen] = React.useState(false);
+  const [isTreeViewOpen, setIsTreeViewOpen] = useState(false);
 
   const handleMenuIconOnClick = () => {
     setIsTreeViewOpen(!isTreeViewOpen);
-  };
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
@@ -128,24 +127,28 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <ContactPageIcon  />
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
+      <NavLink item={{ title: 'Contact', path: '/contact' }} >
+        <MenuItem>
+          <IconButton size="large" color="inherit">
+              <ContactPageIcon  />
+          </IconButton>
+          <p>Contact Us</p>
+        </MenuItem>
+      </NavLink>
+      <NavLink item={{ title: 'Shopping Cart', path: '/cart' }} >
       <MenuItem>
         <IconButton
           size="large"
           aria-label="show 5 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={5} color="error">
+          <Badge badgeContent={itemCount} color="error">  {/* will need to update this to reflect the number of items in the cart */}
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
         <p>Cart Items</p>
       </MenuItem>
+      </NavLink>
     </Menu>
   );
 
@@ -182,18 +185,23 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="contact us" color="inherit">
+            <NavLink item={{ title: 'Contact', path: '/contact' }} >
+            <IconButton size="large" aria-label="contact us" color="inherit" className={styles.iconButtonColor} >
                 <ContactPageIcon  />
             </IconButton>
+            </NavLink>
+            <NavLink item={{ title: 'Shopping Cart', path: '/cart' }} >
             <IconButton
               size="large"
               aria-label="show 5 new notifications"
               color="inherit"
+              className={styles.iconButtonColor}
             >
-              <Badge badgeContent={5} color="error">
+              <Badge badgeContent={itemCount} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
+            </NavLink>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
