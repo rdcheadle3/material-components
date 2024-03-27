@@ -14,9 +14,9 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 import { SimpleTreeView, TreeItem } from '@mui/x-tree-view';
 
 const Search = styled('div')(({ theme }) => ({
@@ -130,35 +130,21 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
+            <ContactPageIcon  />
         </IconButton>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 5 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
+          <Badge badgeContent={5} color="error">
+            <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+        <p>Cart Items</p>
       </MenuItem>
     </Menu>
   );
@@ -196,30 +182,17 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
+            <IconButton size="large" aria-label="contact us" color="inherit">
+                <ContactPageIcon  />
             </IconButton>
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 5 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+              <Badge badgeContent={5} color="error">
+                <ShoppingCartIcon />
               </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
