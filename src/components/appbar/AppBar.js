@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import HomeIcon from '@mui/icons-material/Home';
 import NavLink from './navLink/navLink';
 import styles from './appbar.module.css';
 import { useCart } from '../../context/CartContext';
@@ -149,6 +150,14 @@ export default function PrimarySearchAppBar() {
         <p>Cart Items</p>
       </MenuItem>
       </NavLink>
+      <NavLink item={{ title: 'Home', path: '/' }} >
+      <MenuItem>
+        <IconButton size="large" color="inherit">
+            <HomeIcon  />
+        </IconButton>
+        <p>Home</p>
+      </MenuItem>
+      </NavLink>
     </Menu>
   );
 
@@ -185,6 +194,11 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <NavLink item={{ title: 'Home', path: '/' }} >
+            <IconButton size="large" aria-label="home" color="inherit" className={styles.iconButtonColor} >
+                <HomeIcon  />
+            </IconButton>
+            </NavLink>
             <NavLink item={{ title: 'Contact', path: '/contact' }} >
             <IconButton size="large" aria-label="contact us" color="inherit" className={styles.iconButtonColor} >
                 <ContactPageIcon  />
