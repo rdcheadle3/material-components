@@ -128,6 +128,13 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <NavLink item={{ title: 'Catalog', path: '/catalog' }} >
+        <MenuItem>
+          <IconButton size="large" color="inherit">
+              <p>Catalog</p>
+          </IconButton>
+        </MenuItem>
+      </NavLink>
       <NavLink item={{ title: 'Contact', path: '/contact' }} >
         <MenuItem>
           <IconButton size="large" color="inherit">
@@ -194,6 +201,11 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <NavLink item={{ title: 'Catalog', path: '/catalog' }} >
+            <IconButton size="large" color="inherit" className={styles.iconButtonColor} >
+                <p>Catalog</p>
+            </IconButton>
+            </NavLink>
             <NavLink item={{ title: 'Home', path: '/' }} >
             <IconButton size="large" aria-label="home" color="inherit" className={styles.iconButtonColor} >
                 <HomeIcon  />
